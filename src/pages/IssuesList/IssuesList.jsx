@@ -1,13 +1,11 @@
-import { Octokit } from "octokit";
 import { useState, useEffect } from "react";
-import React from "react";
 
 function IssuesList() {
   const [issues, setIssues] = useState([]);
 
   useEffect(() => {
     const token = process.env.REACT_APP_TOKEN;
-    const octokit = new Octokit({ auth: token });
+
     async function fetchIssues() {
       fetch(
         "https://api.github.com/repos/facebook/react/issues?sort=comments",
