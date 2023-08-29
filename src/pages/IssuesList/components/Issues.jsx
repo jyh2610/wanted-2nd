@@ -1,10 +1,11 @@
 import React from "react";
+import { styled } from "styled-components";
 
 function Issues({ issue }) {
   return (
-    <div>
+    <IssueDiv>
       <div>
-        <span>{issue.number}</span>
+        <span>#{issue.number}</span>
         <span>{issue.title}</span>
       </div>
       <div>
@@ -12,8 +13,12 @@ function Issues({ issue }) {
         <span>{issue.user.login}</span>
       </div>
       <div>{issue.comments}</div>
-    </div>
+    </IssueDiv>
   );
 }
 
 export default Issues;
+
+const IssueDiv = styled.div`
+  border-bottom: 1px solid gray;
+`;
