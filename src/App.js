@@ -29,7 +29,7 @@ export default App;
 
 const RootLayout = styled.div`
   border: 1px solid black;
-  width: 90vw;
-  height: 100vh;
-  margin: auto;
+  width: 60vw;
+  height: 90vh;
+  margin: 20px auto;
 `;
