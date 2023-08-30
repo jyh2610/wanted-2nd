@@ -3,31 +3,23 @@ import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
 function Issues({ issue }) {
-  console.log(issue);
-  //이슈번호, 이슈제목, 작성자, 작성일, 코멘트 수, 작성자 프로필 이미지, 본문'
-  const {
-    number,
-    title,
-    updated_at,
-    author_association,
-    comments,
-    avatar_url,
-    body,
-  } = issue;
+  const { number, title, updated_at, user, comments, avatar_url, body } = issue;
   const navigate = useNavigate();
   const moveIssue = () => {
+    const { login } = user;
     navigate(`detail/${issue.id}`, {
       state: {
         number,
         title,
         updated_at,
-        author_association,
+        login,
         comments,
         avatar_url,
         body,
       },
     });
   };
+  console.log(issue.user);
   return (
     <IssueDiv onClick={moveIssue}>
       <div>
@@ -36,7 +28,7 @@ function Issues({ issue }) {
       </div>
       <div>
         <span>{updated_at}</span>
-        <span>{issue.user.login}</span>
+        <span>{user.login}</span>
       </div>
       <div>{comments}</div>
     </IssueDiv>
