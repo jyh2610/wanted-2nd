@@ -1,16 +1,19 @@
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
+import { formatDate } from '../../../apis/formatData';
+
 function Issues({ issue }) {
   const { number, title, updated_at, user, comments, avatar_url, body } = issue;
   const navigate = useNavigate();
+  const formatedDate = formatDate(updated_at);
   const moveIssue = () => {
     const { login } = user;
     navigate(`detail/${issue.id}`, {
       state: {
         number,
         title,
-        updated_at,
+        formatedDate,
         login,
         comments,
         avatar_url,
@@ -27,7 +30,7 @@ function Issues({ issue }) {
         <span>{title}</span>
         <div>
           <span>작성자 : {user.login}</span>
-          <span>작성일 : {updated_at}</span>
+          <span>작성일 : {formatedDate}</span>
         </div>
       </div>
       <div>코멘트 : {comments}</div>

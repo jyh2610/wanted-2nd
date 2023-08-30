@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+### 프리온보딩 2주차 과제
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 컴포넌트 설명
 
-## Available Scripts
+# IssuesList: 이슈 리스트 렌더링 페이지
 
-In the project directory, you can run:
+    -   githubAPI로 이슈 데이터를 받아와 렌더링한 후 Issues 컴포넌트로 해당 이슈 데이터를 넘겨줍니다.
+        이슈리스트는 30개씩 렌더링됩니다. IntersectionObserver를 이용하여 화면의 움직임을 감지해  스크롤이 끝나면 다시 30개의 데이터를 받아옵니다.
+    -   state에 저장된 이슈 배열의 인덱스를 계산해서 5번째 셀에는 광고셀이 나오도록 렌더링합니다.
 
-### `npm start`
+# Issues : 각각의 이슈 컴포넌트
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    -   props로 받아온 데이터를 화면에 렌더링하고 해당 구역 클릭시 navigate훅을 이용해 해당페이지로      state값과 함께 넘겨줍니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Detail : 이슈의 상세정보 페이지 컴포넌트
 
-### `npm test`
+    - useLocation으로 넘겨받은 state로  작성자 이미지, 이슈 번호, 이슈 제목, 작성자, 작성일, 코멘트 데이터를 받와 화면에 렌더링합니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# 미구현
 
-### `npm run build`
+    - 데이터 페칭시 로딩ui
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# 트러블
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    - 절대경로 eslint가 파일들의 경로를 인식하지 못하는 문제 발생

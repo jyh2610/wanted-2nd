@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 
 import { styled } from 'styled-components';
 
-import { IssueListApi } from './callData';
+import { IssueListApi } from '../../apis/callData';
+
 import Issues from './components/Issues';
 
 function IssuesList() {

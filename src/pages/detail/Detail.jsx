@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 
 function Detail() {
   const location = useLocation();
-  const { number, title, updated_at, login, comments, avatar_url, body } = location.state;
+  const { number, title, formatedDate, login, comments, avatar_url, body } = location.state;
 
   return (
     <div>
@@ -13,7 +13,7 @@ function Detail() {
           <span>{title}</span>
         </div>
         <div>
-          <span>{updated_at}</span>
+          <span>{formatedDate}</span>
           <span>{login}</span>
         </div>
         <div>{comments}</div>

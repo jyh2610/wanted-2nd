@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 
 import GlobalStyle from './GlobalStyle';
 import Detail from './pages/detail/Detail';
-import Error from './pages/Error/Error';
+import Error from './pages/error/Error';
 import IssuesList from './pages/IssuesList/IssuesList';
 import Nav from './pages/Nav';
 
