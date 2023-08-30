@@ -23,7 +23,8 @@ function Issues({ issue }) {
     <IssueDiv onClick={moveIssue}>
       <div>
         <span>#{number}</span>
-        <span>{title}</span>{' '}
+        <br />
+        <span>{title}</span>
         <div>
           <span>작성자 : {user.login}</span>
           <span>작성일 : {updated_at}</span>

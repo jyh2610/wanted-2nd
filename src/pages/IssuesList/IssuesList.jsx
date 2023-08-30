@@ -10,8 +10,8 @@ function IssuesList() {
   const [pageNumber, setPageNumber] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  const observerRef = useRef(); // Intersection Observer의 ref
-  const lastIssueRef = useRef(); // 마지막 이슈 엘리먼트의 ref
+  const observerRef = useRef();
+  const lastIssueRef = useRef();
 
   useEffect(() => {
     const fetchIssues = async () => {
@@ -68,7 +68,7 @@ function IssuesList() {
             ) : (
               <>
                 {isFifth && (
-                  <AdCells>
+                  <AdCells href='https://www.wanted.co.kr/'>
                     <img
                       src='https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100'
                       alt='wanted banner'
@@ -96,7 +96,7 @@ const RootLayout = styled.div`
   }
 `;
 
-const AdCells = styled.div`
+const AdCells = styled.a`
   width: 100%;
   display: flex;
   justify-content: center;
