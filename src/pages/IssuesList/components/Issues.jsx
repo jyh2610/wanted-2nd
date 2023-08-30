@@ -38,6 +38,7 @@ export default Issues;
 
 const IssueDiv = styled.div`
   display: flex;
+  justify-content: space-between;
   height: 20%;
   padding: 10px;
   border-bottom: 1px solid gray;

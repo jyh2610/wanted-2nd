@@ -1,55 +1,84 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-import axios from 'axios';
 import { styled } from 'styled-components';
 
+import { IssueListApi } from './callData';
 import Issues from './components/Issues';
-
-const token = process.env.REACT_APP_TOKEN;
-export const issueListApi = async pageNumber => {
-  const response = await axios.get(
-    `https://api.github.com/repos/facebook/react/issues?per_page=30&page=${pageNumber}&sort=comments`,
-    {
-      headers: { Authorization: token },
-    },
-  );
-
-  return response.data;
-};
 
 function IssuesList() {
   const [issues, setIssues] = useState([]);
-  // const [error, setError] = useState(null);
-  // const [pageNumber, setPageNumber] = useState(1);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+  const observerRef = useRef(); // Intersection Observer의 ref
+  const lastIssueRef = useRef(); // 마지막 이슈 엘리먼트의 ref
 
   useEffect(() => {
     const fetchIssues = async () => {
       try {
-        const data = await issueListApi();
-        const OpenedData = await data.filter(issue => issue.state === 'open');
-        setIssues(OpenedData);
+        setLoading(true);
+        const data = await IssueListApi(pageNumber);
+        const OpenedData = data.filter(issue => issue.state === 'open');
+        setIssues(prevIssues => [...prevIssues, ...OpenedData]);
+        setLoading(false);
       } catch (error) {
-        // setError("Error fetching issues");
         console.error(error);
       }
     };
 
     fetchIssues();
-  }, []);
+  }, [pageNumber]);
+
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: '20px',
+      threshold: 0.5,
+    };
+
+    const handleObserver = entries => {
+      const entry = entries[0];
+      if (entry.isIntersecting && !loading) {
+        setPageNumber(prevPageNumber => prevPageNumber + 1);
+      }
+    };
+
+    observerRef.current = new IntersectionObserver(handleObserver, options);
+
+    if (observerRef.current && lastIssueRef.current) {
+      observerRef.current.observe(lastIssueRef.current);
+    }
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, [loading]);
 
   return (
     <RootLayout>
       {issues.map((issue, idx) => {
-        const isFifth = idx && (idx + 1) % 5 === 0;
-        return isFifth ? (
-          <AdCells>
-            <img
-              src='https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100'
-              alt='wanted banner'
-            />
-          </AdCells>
-        ) : (
-          <Issues key={issue.id} issue={issue} />
+        const isFifth = (idx + 1) % 5 === 0;
+
+        return (
+          <div key={issue.id} ref={idx === issues.length - 1 ? lastIssueRef : null}>
+            {idx === issues.length - 1 ? (
+              <Issues issue={issue} />
+            ) : (
+              <>
+                {isFifth && (
+                  <AdCells>
+                    <img
+                      src='https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100'
+                      alt='wanted banner'
+                    />
+                  </AdCells>
+                )}
+                <Issues issue={issue} />
+              </>
+            )}
+          </div>
         );
       })}
     </RootLayout>
@@ -72,7 +101,7 @@ const AdCells = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20%;
+  height: 100px;
   border-bottom: 1px solid gray;
   img {
     max-width: 100%;
