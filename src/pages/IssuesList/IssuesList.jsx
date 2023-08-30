@@ -1,9 +1,21 @@
 import { useState, useEffect } from 'react';
 
-import { issueListApi } from 'api/api';
+import axios from 'axios';
 import { styled } from 'styled-components';
 
 import Issues from './components/Issues';
+
+const token = process.env.REACT_APP_TOKEN;
+export const issueListApi = async pageNumber => {
+  const response = await axios.get(
+    `https://api.github.com/repos/facebook/react/issues?per_page=30&page=${pageNumber}&sort=comments`,
+    {
+      headers: { Authorization: token },
+    },
+  );
+
+  return response.data;
+};
 
 function IssuesList() {
   const [issues, setIssues] = useState([]);
