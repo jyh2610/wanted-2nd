@@ -12,7 +12,7 @@ function App() {
       element: <IssuesList />,
     },
     {
-      path: "/detail",
+      path: "/detail/:id",
       element: <Detail />,
     },
   ]);

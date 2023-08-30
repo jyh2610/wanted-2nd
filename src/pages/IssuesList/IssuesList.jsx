@@ -5,8 +5,8 @@ import { styled } from "styled-components";
 
 function IssuesList() {
   const [issues, setIssues] = useState([]);
-  const [error, setError] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
+  // const [error, setError] = useState(null);
+  // const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     const fetchIssues = async () => {
@@ -15,7 +15,7 @@ function IssuesList() {
         const OpenedData = await data.filter((issue) => issue.state === "open");
         setIssues(OpenedData);
       } catch (error) {
-        setError("Error fetching issues");
+        // setError("Error fetching issues");
         console.error(error);
       }
     };
