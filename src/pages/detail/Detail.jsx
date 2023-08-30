@@ -7,7 +7,7 @@ function Detail() {
   return (
     <div>
       <div>
-        <div>{avatar_url}</div>
+        <img src={avatar_url} alt='img' />
         <div>
           <span>#{number}</span>
           <span>{title}</span>
