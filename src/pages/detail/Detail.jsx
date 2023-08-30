@@ -1,11 +1,9 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 function Detail() {
   const location = useLocation();
-  const { number, title, updated_at, login, comments, avatar_url, body } =
-    location.state;
-  console.log(login);
+  const { number, title, updated_at, login, comments, avatar_url, body } = location.state;
+
   return (
     <div>
       <div>

@@ -1,7 +1,9 @@
-import { issueListApi } from "../../api/api";
-import { useState, useEffect } from "react";
-import Issues from "./components/Issues";
-import { styled } from "styled-components";
+import { useState, useEffect } from 'react';
+
+import { issueListApi } from 'api/api';
+import { styled } from 'styled-components';
+
+import Issues from './components/Issues';
 
 function IssuesList() {
   const [issues, setIssues] = useState([]);
@@ -12,7 +14,7 @@ function IssuesList() {
     const fetchIssues = async () => {
       try {
         const data = await issueListApi();
-        const OpenedData = await data.filter((issue) => issue.state === "open");
+        const OpenedData = await data.filter(issue => issue.state === 'open');
         setIssues(OpenedData);
       } catch (error) {
         // setError("Error fetching issues");
@@ -30,8 +32,8 @@ function IssuesList() {
         return isFifth ? (
           <AdCells>
             <img
-              src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100"
-              alt="wanted banner"
+              src='https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100'
+              alt='wanted banner'
             />
           </AdCells>
         ) : (

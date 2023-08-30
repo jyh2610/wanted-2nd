@@ -1,18 +1,19 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Detail from "./pages/detail/Detail";
-import Nav from "./pages/Nav";
-import GlobalStyle from "./GlobalStyle";
-import IssuesList from "./pages/IssuesList/IssuesList";
-import { styled } from "styled-components";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { styled } from 'styled-components';
+
+import GlobalStyle from './GlobalStyle';
+import Detail from './pages/detail/Detail';
+import IssuesList from './pages/IssuesList/IssuesList';
+import Nav from './pages/Nav';
 
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: '/',
       element: <IssuesList />,
     },
     {
-      path: "/detail/:id",
+      path: '/detail/:id',
       element: <Detail />,
     },
   ]);

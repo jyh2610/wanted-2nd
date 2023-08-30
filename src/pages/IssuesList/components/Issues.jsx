@@ -1,6 +1,5 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { styled } from "styled-components";
+import { useNavigate } from 'react-router-dom';
+import { styled } from 'styled-components';
 
 function Issues({ issue }) {
   const { number, title, updated_at, user, comments, avatar_url, body } = issue;
@@ -19,12 +18,12 @@ function Issues({ issue }) {
       },
     });
   };
-  console.log(issue.user);
+
   return (
     <IssueDiv onClick={moveIssue}>
       <div>
         <span>#{number}</span>
-        <span>{title}</span>{" "}
+        <span>{title}</span>{' '}
         <div>
           <span>작성자 : {user.login}</span>
           <span>작성일 : {updated_at}</span>
@@ -43,5 +42,3 @@ const IssueDiv = styled.div`
   padding: 10px;
   border-bottom: 1px solid gray;
 `;
-
-const IssueTitle = styled.div``;
